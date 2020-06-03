@@ -14,7 +14,7 @@ import scipy.optimize as optimize
 from scipy import optimize, special
 
 
-
+""" Calculating Bond"""
 class CalculatingBond:
     def __init__(self,price, par, T, coup, freq=2):
         self.price = price
@@ -22,11 +22,12 @@ class CalculatingBond:
         self.T = T
         self.coup = coup
         self.freq = freq
-
+    
+    """Display these value in class"""
     def getData(self):
         print("{}\n{}\n{}\n{}\n{}\n{}\n".format(self.price,
                                                 self.par, self.T, self.ytm, self.coup, self.freq))
-    
+    """ Get yield-to-maturity of a bond """
     def bond_ytm(self, guess=0.05):
         freq = float(self.freq)
         periods = self.T*freq
@@ -37,7 +38,7 @@ class CalculatingBond:
             self.par/(1+y/freq)**(freq*t) - self.price
         return optimize.newton(ytm_func, guess)
     
-
+    """ Get bond price from YTM """
     def bond_price(self,ytm):
         freq = float(self.freq)
         periods = self.T*freq
@@ -47,6 +48,7 @@ class CalculatingBond:
             self.par/(1+ytm/freq)**(freq*self.T)
         return price
 
+    """ Calculate modified duration of a bond """
     def bond_mod_duration(self, ytm, dy=0.01):
 
         ytm_minus = ytm - dy    
@@ -58,6 +60,7 @@ class CalculatingBond:
         mduration = (price_minus-price_plus)/(2.*self.price*dy)
         return mduration
 
+    """ Calculate convexity of a bond """
     def bond_convexity(self,ytm,dy=0.01):
         ytm_minus = ytm - dy    
         price_minus = self.bond_price(ytm_minus)

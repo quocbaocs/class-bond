@@ -1,3 +1,15 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+""" ClassPriceOfBond.py Get yield-to-maturity of a bond
+__author__      = "Le Quoc Bao KHMT11A "
+__university__ = "Industrial university of Ho Chi Minh City"
+__copyright__   = "Copyright 2020"
+
+__email__ = "quocbaole.cs@gmail.com"
+__status__ = "Production"
+"""
+
 from ClassPriceOfBond import CalculatingBond
 
 
